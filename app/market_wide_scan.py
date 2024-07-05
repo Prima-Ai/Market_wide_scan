@@ -55,7 +55,7 @@ class market_wide_scan:
         
         return "done all process"
     
-    def get_results(symbol):
+    def get_results(self,symbol):
         output_directory = "C:/MY_PROJECTS/market_wide_scan/op_files"
         file_path = os.path.join(output_directory,f"{symbol}.csv")
         if os.path.exists(file_path):
@@ -65,22 +65,23 @@ class market_wide_scan:
             data = data[np.isclose(data['extent_of_fall'],0)==False]
             data.dropna(subset=['extent_of_fall'],inplace=True)
             print(f"loaded data {symbol}")
-            return data
+            result = data.to_dict(orient='records')
+            return result
         else:
             print(f"Symbol {symbol} not found")
             return None
 
-path = "C:/MY_PROJECTS/market_wide_scan/data/ADANIENT.csv"
-csv = "C:/MY_PROJECTS/market_wide_scan/n200.csv"
-scanner = market_wide_scan()
-data = scanner.collect_data(csv)
-# weekly = scanner.oneweek_scan(path)
+# path = "C:/MY_PROJECTS/market_wide_scan/data/ADANIENT.csv"
+# csv = "C:/MY_PROJECTS/market_wide_scan/n200.csv"
+# scanner = market_wide_scan()
+# data = scanner.collect_data(csv)
+# # weekly = scanner.oneweek_scan(path)
 
-# Parameters
-NOD = 'W'
-MA = 60
-column_name = 'Weekly'
+# # Parameters
+# NOD = 'W'
+# MA = 60
+# column_name = 'Weekly'
 
-# Create an instance of the class and call the method
-scanner = market_wide_scan()
-paras = scanner.get_paras(NOD, MA, column_name)
+# # Create an instance of the class and call the method
+# scanner = market_wide_scan()
+# paras = scanner.get_paras(NOD, MA, column_name)
