@@ -58,3 +58,12 @@ csv = "C:/MY_PROJECTS/market_wide_scan/n200.csv"
 scanner = market_wide_scan()
 data = scanner.collect_data(csv)
 # weekly = scanner.oneweek_scan(path)
+
+# Parameters
+NOD = 'W'
+MA = 60
+column_name = 'Weekly'
+
+# Create an instance of the class and call the method
+scanner = market_wide_scan()
+paras = scanner.get_paras(NOD, MA, column_name)
