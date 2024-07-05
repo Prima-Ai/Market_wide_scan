@@ -2,6 +2,8 @@ import pandas as pd
 import yfinance as yf
 import os
 import glob
+import datetime
+import numpy as np
 
 class market_wide_scan:
     def __init__(self):
@@ -52,6 +54,21 @@ class market_wide_scan:
             print(f"Saved file: {output_path}")
         
         return "done all process"
+    
+    def get_results(symbol):
+        output_directory = "C:/MY_PROJECTS/market_wide_scan/op_files"
+        file_path = os.path.join(output_directory,f"{symbol}.csv")
+        if os.path.exists(file_path):
+            data = pd.read_csv(file_path)
+            data['Date'] = pd.to_datetime(data['Date'])
+            data.sort_values(by='Date',ascending=False,inplace=True)
+            data = data[np.isclose(data['extent_of_fall'],0)==False]
+            data.dropna(subset=['extent_of_fall'],inplace=True)
+            print(f"loaded data {symbol}")
+            return data
+        else:
+            print(f"Symbol {symbol} not found")
+            return None
 
 path = "C:/MY_PROJECTS/market_wide_scan/data/ADANIENT.csv"
 csv = "C:/MY_PROJECTS/market_wide_scan/n200.csv"
