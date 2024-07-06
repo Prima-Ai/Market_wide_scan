@@ -9,8 +9,8 @@ class market_wide_scan:
     def __init__(self):
         self.directory = "C:/MY_PROJECTS/market_wide_scan/data"
         
-    def collect_data(self,csv_path):
-        csv = pd.read_csv(csv_path)
+    def collect_data(self):
+        csv = pd.read_csv("C:/MY_PROJECTS/market_wide_scan/n200.csv")
         symbols = csv['symbol']
         for i in symbols:
             ticker_name = i
