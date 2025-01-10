@@ -1,0 +1,9 @@
+## ignore the venv env
+env/
+
+## ignore temp
+temp/
+
+## ignore the data files and op_files
+data/
+op_files/
